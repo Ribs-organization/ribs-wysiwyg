@@ -27,6 +27,7 @@ class RibsWysiwyg {
     this.selector.style.display = 'none';
     const editableDiv = document.createElement('div');
     editableDiv.id = 'ribs-wysiwyg-editable';
+    editableDiv.contentEditable = true;
     this.selector.parentNode.prepend(editableDiv);
   }
 }
