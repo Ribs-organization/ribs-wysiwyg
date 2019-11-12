@@ -17,18 +17,19 @@ class RibsWysiwyg {
     this.selector = document.querySelector(options.selector);
     this.options = options;
 
-    this.init();
+    this.initEditableDiv();
   }
 
   /**
    * init editable div
    */
-  init() {
+  initEditableDiv() {
     this.selector.style.display = 'none';
     const editableDiv = document.createElement('div');
     editableDiv.id = 'ribs-wysiwyg-editable';
     editableDiv.contentEditable = true;
     this.selector.parentNode.prepend(editableDiv);
+    this.editableDiv = document.getElementById('ribs-wysiwyg-editable');
   }
 }
 
