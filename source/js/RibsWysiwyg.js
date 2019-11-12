@@ -18,6 +18,7 @@ class RibsWysiwyg {
     this.options = options;
 
     this.initEditableDiv();
+    this.initToolbar();
   }
 
   /**
@@ -25,11 +26,26 @@ class RibsWysiwyg {
    */
   initEditableDiv() {
     this.selector.style.display = 'none';
+
+    const wysiwygDiv = document.createElement('div');
+    wysiwygDiv.id = 'ribs-wysiwyg-container';
+    this.selector.parentNode.prepend(wysiwygDiv);
+    this.wysiwygDiv = document.getElementById('ribs-wysiwyg-container');
+
     const editableDiv = document.createElement('div');
     editableDiv.id = 'ribs-wysiwyg-editable';
     editableDiv.contentEditable = true;
-    this.selector.parentNode.prepend(editableDiv);
+    this.wysiwygDiv.append(editableDiv);
     this.editableDiv = document.getElementById('ribs-wysiwyg-editable');
+  }
+
+  /**
+   * method to init toolbar
+   */
+  initToolbar() {
+    const toolbarDiv = document.createElement('div');
+    toolbarDiv.classList.add('ribs-wysiwyg-toolbar');
+    this.wysiwygDiv.prepend(toolbarDiv);
   }
 }
 
