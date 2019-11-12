@@ -1,0 +1,48 @@
+{
+    "name": "ribs-wysiwyg",
+    "version": "1.0.0",
+    "description": "ribs-wysiwyg",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Ribs-organization/ribs-wysiwyg.git"
+    },
+    "keywords": [
+        "template",
+        "js",
+        "es6",
+        "scss",
+        "ribs-front-component"
+    ],
+    "author": "pioupiou <pilloud.anthony@gmail.com> (https://anthony-pilloud.fr)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Ribs-organization/ribs-wysiwyg/issues"
+    },
+    "homepage": "https://github.com/Ribs-organization/ribs-wysiwyg#readme",
+    "devDependencies": {
+        "autoprefixer": "^9.4.5",
+        "babel-core": "^6.26.3",
+        "babel-loader": "7.1.3",
+        "babel-plugin-transform-runtime": "^6.23.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-runtime": "^6.26.0",
+        "copy-webpack-plugin": "^5.0.5",
+        "css-loader": "^2.1.0",
+        "file-loader": "^4.2.0",
+        "mini-css-extract-plugin": "^0.5.0",
+        "node-sass": "^4.11.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "sass-loader": "^7.1.0",
+        "uglifyjs-webpack-plugin": "^2.1.1",
+        "webpack": "^4.28.4",
+        "webpack-cli": "^3.2.1"
+    },
+    "dependencies": {
+        "ribs-core": "^0.0.9-4",
+        "ribs-reset-css": "^1.0.2"
+    }
+}
