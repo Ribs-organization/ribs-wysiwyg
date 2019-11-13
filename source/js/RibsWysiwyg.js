@@ -15,10 +15,22 @@ class RibsWysiwyg {
     }
 
     this.selector = document.querySelector(options.selector);
-    this.options = options;
 
+    this.defineOptions(options);
     this.initEditableDiv();
     this.initToolbar();
+  }
+
+  /**
+   * method to defined options of wysiwyg
+   * @param options
+   */
+  defineOptions(options) {
+    if (!options.height) {
+      options.height = '200px'
+    }
+
+    this.options = options;
   }
 
   /**
@@ -34,9 +46,10 @@ class RibsWysiwyg {
 
     const editableDiv = document.createElement('div');
     editableDiv.id = 'ribs-wysiwyg-editable';
-    editableDiv.contentEditable = true;
     this.wysiwygDiv.append(editableDiv);
     this.editableDiv = document.getElementById('ribs-wysiwyg-editable');
+    this.editableDiv.style.height = Number.isInteger(this.options.height) ? `${this.options.height}px` : this.options.height;
+    this.editableDiv.contentEditable = true;
   }
 
   /**
