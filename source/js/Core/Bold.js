@@ -1,5 +1,3 @@
-import RibsWysiwygUtils from "../RibsWysiwygUtils";
-
 class Bold {
   /**
    * method to initialize Bold plugin
@@ -18,9 +16,27 @@ class Bold {
     boldMenu.id = 'ribs-wysiwyg-toolbar-bold';
     boldMenu.textContent = 'B';
     boldMenu.addEventListener('click', (event) => {
-      console.log(RibsWysiwygUtils.getSelectionText());
+      this.setTextToBold();
     });
     this.toolbarDiv.append(boldMenu);
+  }
+
+  /**
+   * method to put text in bold
+   */
+  setTextToBold() {
+    const selection = window.getSelection();
+
+    if (selection.rangeCount) {
+      const selectionContent = selection.toString();
+      const range = selection.getRangeAt(0);
+      range.deleteContents();
+
+      const boldElement = document.createElement('strong');
+      boldElement.textContent = selectionContent;
+
+      range.insertNode(boldElement);
+    }
   }
 }
 
