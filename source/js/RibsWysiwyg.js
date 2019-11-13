@@ -57,8 +57,14 @@ class RibsWysiwyg {
    */
   initToolbar() {
     const toolbarDiv = document.createElement('div');
-    toolbarDiv.classList.add('ribs-wysiwyg-toolbar');
+    toolbarDiv.id = 'ribs-wysiwyg-toolbar';
     this.wysiwygDiv.prepend(toolbarDiv);
+    this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
+
+    const boldMenu = document.createElement('div');
+    boldMenu.id = 'ribs-wysiwyg-toolbar-bold';
+    boldMenu.innerHTML = 'Bolder';
+    this.toolbarDiv.append(boldMenu);
   }
 }
 
