@@ -62,13 +62,8 @@ class RibsWysiwyg {
     this.wysiwygDiv.prepend(toolbarDiv);
     this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
 
-    const boldMenu = document.createElement('button');
-    boldMenu.id = 'ribs-wysiwyg-toolbar-bold';
-    boldMenu.textContent = 'B';
-    boldMenu.addEventListener('click', (event) => {
-      console.log(RibsWysiwygUtils.getSelectionText());
-    });
-    this.toolbarDiv.append(boldMenu);
+    const boldPlugin = require('./Core/Bold.js');
+    boldPlugin.launchClass(this.toolbarDiv);
   }
 }
 
