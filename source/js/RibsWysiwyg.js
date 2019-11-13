@@ -1,4 +1,5 @@
-import RibsCore from "ribs-core";
+import RibsCore from 'ribs-core';
+import RibsWysiwygUtils from './RibsWysiwygUtils'
 
 class RibsWysiwyg {
   /**
@@ -61,9 +62,12 @@ class RibsWysiwyg {
     this.wysiwygDiv.prepend(toolbarDiv);
     this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
 
-    const boldMenu = document.createElement('div');
+    const boldMenu = document.createElement('button');
     boldMenu.id = 'ribs-wysiwyg-toolbar-bold';
-    boldMenu.innerHTML = 'Bolder';
+    boldMenu.textContent = 'B';
+    boldMenu.addEventListener('click', (event) => {
+      console.log(RibsWysiwygUtils.getSelectionText());
+    });
     this.toolbarDiv.append(boldMenu);
   }
 }
