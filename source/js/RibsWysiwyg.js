@@ -57,6 +57,11 @@ class RibsWysiwyg {
     this.editableDiv = document.getElementById('ribs-wysiwyg-editable');
     this.editableDiv.style.height = Number.isInteger(this.options.height) ? `${this.options.height}px` : this.options.height;
     this.editableDiv.contentEditable = true;
+    this.editableDiv.addEventListener('keydown', () => {
+      if (window.getSelection && window.getSelection().getRangeAt) {
+        sessionStorage.setItem('carteNode', window.getSelection().anchorNode.parentNode.tagName);
+      }
+    })
   }
 
   /**
