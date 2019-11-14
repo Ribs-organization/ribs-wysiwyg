@@ -1,1 +1,1 @@
-#ribs-wysiwyg-editable{border:1px solid #ccc;width:100%;min-height:200px}
+#ribs-wysiwyg-editable{border:1px solid #ccc;width:100%;min-height:200px}#ribs-wysiwyg-toolbar button{border:none;box-shadow:none;width:30px;height:30px;line-height:30px;text-align:center;cursor:pointer;transition:background .3s ease}#ribs-wysiwyg-toolbar button.active{background:#ccc}
