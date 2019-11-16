@@ -32,7 +32,7 @@ class RibsWysiwyg {
     }
 
     if (!options.toolbar) {
-      options.toolbar = ['Bold, Italic'];
+      options.toolbar = ['Bold', 'Italic'];
     } else {
       options.toolbar = options.toolbar.split(' ');
     }
@@ -68,10 +68,9 @@ class RibsWysiwyg {
     this.wysiwygDiv.prepend(toolbarDiv);
     this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
 
-    const boldPlugin = require('./Plugins/Bold.js');
-    boldPlugin.launchClass(this.toolbarDiv);
-    const italicPlugin = require('./Plugins/Italic.js');
-    italicPlugin.launchClass(this.toolbarDiv);
+    for (let plugin of this.options.toolbar) {
+      (require(`./Plugins/${plugin}.js`)).launchClass(this.toolbarDiv);
+    }
   }
 }
 
