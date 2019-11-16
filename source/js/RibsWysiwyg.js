@@ -32,9 +32,9 @@ class RibsWysiwyg {
     }
 
     if (!options.toolbar) {
-      options.toolbar = options.toolbar.split(' ');
-    } else {
       options.toolbar = ['Bold, Italic'];
+    } else {
+      options.toolbar = options.toolbar.split(' ');
     }
 
     this.options = options;
@@ -70,6 +70,8 @@ class RibsWysiwyg {
 
     const boldPlugin = require('./Plugins/Bold.js');
     boldPlugin.launchClass(this.toolbarDiv);
+    const italicPlugin = require('./Plugins/Italic.js');
+    italicPlugin.launchClass(this.toolbarDiv);
   }
 }
 
