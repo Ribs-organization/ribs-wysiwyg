@@ -31,6 +31,12 @@ class RibsWysiwyg {
       options.height = '200px'
     }
 
+    if (!options.toolbar) {
+      options.toolbar = options.toolbar.split(' ');
+    } else {
+      options.toolbar = ['Bold, Italic'];
+    }
+
     this.options = options;
   }
 
