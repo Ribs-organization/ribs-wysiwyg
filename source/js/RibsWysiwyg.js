@@ -68,7 +68,7 @@ class RibsWysiwyg {
     this.wysiwygDiv.prepend(toolbarDiv);
     this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
 
-    const boldPlugin = require('./Core/Bold.js');
+    const boldPlugin = require('./Plugins/Bold.js');
     boldPlugin.launchClass(this.toolbarDiv);
   }
 }
