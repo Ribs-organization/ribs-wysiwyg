@@ -25,18 +25,7 @@ class Italic {
    * method to put text in italic
    */
   setTextToItalic() {
-    const selection = window.getSelection();
-
-    if (selection.rangeCount) {
-      const selectionContent = selection.toString();
-      const range = selection.getRangeAt(0);
-      range.deleteContents();
-
-      const italicElement = document.createElement('em');
-      italicElement.textContent = selectionContent;
-
-      range.insertNode(italicElement);
-    }
+    document.execCommand('italic');
   }
 }
 

@@ -25,18 +25,7 @@ class Bold {
    * method to put text in bold
    */
   setTextToBold() {
-    const selection = window.getSelection();
-
-    if (selection.rangeCount) {
-      const selectionContent = selection.toString();
-      const range = selection.getRangeAt(0);
-      range.deleteContents();
-
-      const boldElement = document.createElement('strong');
-      boldElement.textContent = selectionContent;
-
-      range.insertNode(boldElement);
-    }
+    document.execCommand('bold');
   }
 }
 
