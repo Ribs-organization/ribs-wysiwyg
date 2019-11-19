@@ -60,8 +60,14 @@ class RibsWysiwyg {
     this.editableDiv.addEventListener('keydown', () => {
       if (window.getSelection && window.getSelection().getRangeAt) {
         sessionStorage.setItem('carteNode', window.getSelection().anchorNode.parentNode.tagName);
+        this.caretLocationDiv.innerHTML = window.getSelection().anchorNode.parentNode.tagName;
       }
-    })
+    });
+
+    const caretLocationDiv = document.createElement('div');
+    caretLocationDiv.id = 'ribs-wysiwyg-caret-location';
+    this.wysiwygDiv.append(caretLocationDiv);
+    this.caretLocationDiv = document.getElementById('ribs-wysiwyg-caret-location');
   }
 
   /**
