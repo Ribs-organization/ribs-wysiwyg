@@ -59,7 +59,6 @@ class RibsWysiwyg {
     this.editableDiv.contentEditable = true;
     this.editableDiv.addEventListener('keydown', () => {
       if (window.getSelection && window.getSelection().getRangeAt) {
-        sessionStorage.setItem('carteNode', window.getSelection().anchorNode.parentNode.tagName);
         this.caretLocationDiv.innerHTML = window.getSelection().anchorNode.parentNode.tagName;
       }
     });
