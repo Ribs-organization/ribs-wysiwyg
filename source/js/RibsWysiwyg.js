@@ -63,6 +63,20 @@ class RibsWysiwyg {
       }
     });
 
+    this.editableDiv.addEventListener('click', () => {
+      if (window.getSelection && window.getSelection().getRangeAt && window.getSelection().anchorNode) {
+        let element = window.getSelection().anchorNode;
+        const breadcrumbs = [];
+
+        for ( ; element && element !== this.editableDiv; element = element.parentNode) {
+          if (element.tagName !== undefined) {
+            breadcrumbs.push(element.tagName);
+          }
+        }
+        this.caretLocationDiv.innerHTML = breadcrumbs.join(' > ');
+      }
+    });
+
     const caretLocationDiv = document.createElement('div');
     caretLocationDiv.id = 'ribs-wysiwyg-caret-location';
     this.wysiwygDiv.append(caretLocationDiv);
