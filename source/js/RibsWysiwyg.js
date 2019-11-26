@@ -60,14 +60,14 @@ class RibsWysiwyg {
     this.editableDiv.addEventListener('keydown', (event) => {
       if(event.keyCode == 13 && !event.shiftKey) {
         document.execCommand('defaultParagraphSeparator', false, 'p');
-        this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPosition();
+        this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
         return false;
       }
-      this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPosition();
+      this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
     });
 
     this.editableDiv.addEventListener('click', () => {
-      this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPosition();
+      this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
     });
 
     const caretLocationDiv = document.createElement('div');
