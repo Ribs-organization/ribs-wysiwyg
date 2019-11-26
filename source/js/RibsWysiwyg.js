@@ -86,7 +86,7 @@ class RibsWysiwyg {
     this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
 
     for (let plugin of this.options.toolbar) {
-      (require(`./Plugins/${plugin}.js`)).launchClass(this.toolbarDiv);
+      (require(`./Plugins/${plugin}.js`)).launchClass(this.toolbarDiv, this.editableDiv);
     }
   }
 }

@@ -3,8 +3,9 @@ class Bold {
    * method to initialize Bold plugin
    * @param toolbarDiv
    */
-  constructor(toolbarDiv) {
+  constructor(toolbarDiv, editableDiv) {
     this.toolbarDiv = toolbarDiv;
+    this.editableDiv = editableDiv;
     this.addBoldButtonToToolbar();
   }
 
@@ -26,15 +27,17 @@ class Bold {
    */
   setTextToBold() {
     document.execCommand('bold');
+    this.editableDiv.focus();
   }
 }
 
 /**
  * function to load Bold class
  * @param toolbarDiv
+ * @param editableDiv
  */
-function launchClass(toolbarDiv) {
-  const bold = new Bold(toolbarDiv);
+function launchClass(toolbarDiv, editableDiv) {
+  const bold = new Bold(toolbarDiv, editableDiv);
 }
 
 module.exports = {launchClass};
