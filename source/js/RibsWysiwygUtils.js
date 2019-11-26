@@ -19,7 +19,7 @@ class RibsWysiwygUtils {
 
       for ( ; element && element !== editableDiv; element = element.parentNode) {
         if (element.tagName !== undefined) {
-          breadcrumbs.push(element.tagName);
+          breadcrumbs.push(element.tagName.toLowerCase());
         }
       }
       return breadcrumbs.reverse();
