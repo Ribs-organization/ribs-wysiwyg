@@ -67,6 +67,13 @@ class RibsWysiwyg {
     });
 
     this.editableDiv.addEventListener('click', () => {
+      const caretPosition = RibsWysiwygUtils.getCaretPosition();
+      const lastPosition = caretPosition[caretPosition.length - 1];
+
+      if (lastPosition === undefined) {
+        document.execCommand('formatBlock', false, 'p');
+      }
+
       this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
     });
 
