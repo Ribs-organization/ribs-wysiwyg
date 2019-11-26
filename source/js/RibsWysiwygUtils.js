@@ -8,8 +8,8 @@ class RibsWysiwygUtils {
   }
 
   /**
-   * method to get current target position as string
-   * @returns {string|null}
+   * method to get current target position as array
+   * @returns {array}
    */
   static getCaretPosition() {
     if (window.getSelection && window.getSelection().getRangeAt && window.getSelection().anchorNode) {
@@ -22,10 +22,24 @@ class RibsWysiwygUtils {
           breadcrumbs.push(element.tagName);
         }
       }
-      return breadcrumbs.reverse().join(' > ');
+      return breadcrumbs.reverse();
     }
 
-    return null;
+    return [];
+  }
+
+  /**
+   * method to get current target position as string
+   * @returns {string}
+   */
+  static getCaretPositionAsString() {
+    const arrayCaret = this.getCaretPosition();
+
+    if (arrayCaret.length) {
+      return arrayCaret.join(' > ');
+    }
+
+    return '';
   }
 }
 
