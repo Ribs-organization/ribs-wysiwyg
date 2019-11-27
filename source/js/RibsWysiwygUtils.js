@@ -41,6 +41,14 @@ class RibsWysiwygUtils {
 
     return '';
   }
+
+  /**
+   * method to refresh caret location div content
+   */
+  static refreshCaretLocationDiv() {
+    const caretLocationDiv = document.getElementById('ribs-wysiwyg-caret-location');
+    caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
+  }
 }
 
 export default RibsWysiwygUtils;

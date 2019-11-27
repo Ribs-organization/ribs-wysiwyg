@@ -1,3 +1,5 @@
+import RibsWysiwygUtils from "../RibsWysiwygUtils";
+
 class Italic {
   /**
    * method to initialize Italic plugin
@@ -29,6 +31,7 @@ class Italic {
   setTextToItalic() {
     document.execCommand('italic');
     this.editableDiv.focus();
+    RibsWysiwygUtils.refreshCaretLocationDiv();
   }
 }
 

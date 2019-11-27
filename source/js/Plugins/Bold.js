@@ -1,3 +1,5 @@
+import RibsWysiwygUtils from "../RibsWysiwygUtils";
+
 class Bold {
   /**
    * method to initialize Bold plugin
@@ -28,6 +30,7 @@ class Bold {
   setTextToBold() {
     document.execCommand('bold');
     this.editableDiv.focus();
+    RibsWysiwygUtils.refreshCaretLocationDiv();
   }
 }
 
