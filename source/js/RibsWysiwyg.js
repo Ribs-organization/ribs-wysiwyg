@@ -31,7 +31,7 @@ class RibsWysiwyg {
       options.height = '200px'
     }
     if (!options.fontSize) {
-      options.fontSize = [8, 10, 12, 14, 18, 24, 36];
+      options.fontSize = [8, 10, 12, 14, 16, 18, 24, 36];
     }
 
     if (!options.toolbar) {
