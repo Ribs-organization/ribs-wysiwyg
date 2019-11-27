@@ -21,8 +21,15 @@ class FontSize {
     fontSizeMenu.addEventListener('change', (event) => this.changeFontSize(event));
     this.toolbarDiv.append(fontSizeMenu);
 
+    const bodyFontSize = window.getComputedStyle(document.querySelector('body'), null).getPropertyValue('font-size');
+
     for (const fontSize of this.options.fontSize) {
       const option = document.createElement('option');
+
+      if (parseInt(fontSize) === parseInt(bodyFontSize)) {
+        option.selected = true;
+      }
+
       option.text = `${fontSize}px`;
       fontSizeMenu.add(option);
     }
