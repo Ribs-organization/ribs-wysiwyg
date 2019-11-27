@@ -4,6 +4,7 @@ class Bold {
   /**
    * method to initialize Bold plugin
    * @param toolbarDiv
+   * @param editableDiv
    */
   constructor(toolbarDiv, editableDiv) {
     this.toolbarDiv = toolbarDiv;
