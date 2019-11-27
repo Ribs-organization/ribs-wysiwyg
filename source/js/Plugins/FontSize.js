@@ -18,14 +18,31 @@ class FontSize {
   addButtonToToolbar() {
     const fontSizeMenu = document.createElement('select');
     fontSizeMenu.id = 'ribs-wysiwyg-toolbar-fontsize';
-    fontSizeMenu.addEventListener('click', (event) => {
-    });
+    fontSizeMenu.addEventListener('change', (event) => this.changeFontSize(event));
     this.toolbarDiv.append(fontSizeMenu);
+
     for (const fontSize of this.options.fontSize) {
       const option = document.createElement('option');
       option.text = `${fontSize}px`;
       fontSizeMenu.add(option);
     }
+  }
+
+  /**
+   * method to change font size of current selection
+   * @param event
+   */
+  changeFontSize(event) {
+    document.execCommand("fontSize", false, '7');
+
+    const fontElement = document.getElementsByTagName('font')[0];
+    const parentDiv = fontElement.parentNode;
+
+    const span = document.createElement('span');
+    span.appendChild(document.createTextNode(fontElement.textContent));
+    span.style.fontSize = event.currentTarget.value;
+
+    parentDiv.replaceChild(span, fontElement);
   }
 }
 
