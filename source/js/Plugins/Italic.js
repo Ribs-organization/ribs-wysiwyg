@@ -5,8 +5,9 @@ class Italic {
    * method to initialize Italic plugin
    * @param toolbarDiv
    * @param editableDiv
+   * @param options
    */
-  constructor(toolbarDiv, editableDiv) {
+  constructor(toolbarDiv, editableDiv, options) {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
     this.addItalicButtonToToolbar();
@@ -39,9 +40,10 @@ class Italic {
  * function to load Italic class
  * @param toolbarDiv
  * @param editableDiv
+ * @param options
  */
-function launchClass(toolbarDiv, editableDiv) {
-  const italic = new Italic(toolbarDiv, editableDiv);
+function launchClass(toolbarDiv, editableDiv, options) {
+  const italic = new Italic(toolbarDiv, editableDiv, options);
 }
 
 module.exports = {launchClass};

@@ -30,9 +30,12 @@ class RibsWysiwyg {
     if (!options.height) {
       options.height = '200px'
     }
+    if (!options.fontSize) {
+      options.fontSize = [8, 10, 12, 14, 18, 24, 36];
+    }
 
     if (!options.toolbar) {
-      options.toolbar = ['Bold', 'Italic'];
+      options.toolbar = ['Bold', 'Italic', 'FontSize'];
     } else {
       options.toolbar = options.toolbar.split(' ');
     }
@@ -99,7 +102,7 @@ class RibsWysiwyg {
     this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
 
     for (let plugin of this.options.toolbar) {
-      (require(`./Plugins/${plugin}.js`)).launchClass(this.toolbarDiv, this.editableDiv);
+      (require(`./Plugins/${plugin}.js`)).launchClass(this.toolbarDiv, this.editableDiv, this.options);
     }
   }
 }

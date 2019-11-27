@@ -5,8 +5,9 @@ class Bold {
    * method to initialize Bold plugin
    * @param toolbarDiv
    * @param editableDiv
+   * @param options
    */
-  constructor(toolbarDiv, editableDiv) {
+  constructor(toolbarDiv, editableDiv, options) {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
     this.addBoldButtonToToolbar();
@@ -39,9 +40,10 @@ class Bold {
  * function to load Bold class
  * @param toolbarDiv
  * @param editableDiv
+ * @param options
  */
-function launchClass(toolbarDiv, editableDiv) {
-  const bold = new Bold(toolbarDiv, editableDiv);
+function launchClass(toolbarDiv, editableDiv, options) {
+  const bold = new Bold(toolbarDiv, editableDiv, options);
 }
 
 module.exports = {launchClass};
