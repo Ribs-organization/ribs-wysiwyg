@@ -18,7 +18,7 @@ class RibsWysiwyg {
     this.selector = document.querySelector(options.selector);
 
     this.defineOptions(options);
-    this.initEditableDiv();
+    this.initWysiwygDivs();
     this.initToolbar();
   }
 
@@ -41,9 +41,9 @@ class RibsWysiwyg {
   }
 
   /**
-   * init editable div
+   * init wysiwyg div
    */
-  initEditableDiv() {
+  initWysiwygDivs() {
     this.selector.style.display = 'none';
 
     const wysiwygDiv = document.createElement('div');
@@ -57,13 +57,24 @@ class RibsWysiwyg {
     this.editableDiv = document.getElementById('ribs-wysiwyg-editable');
     this.editableDiv.style.height = Number.isInteger(this.options.height) ? `${this.options.height}px` : this.options.height;
     this.editableDiv.contentEditable = true;
+
+    const caretLocationDiv = document.createElement('div');
+    caretLocationDiv.id = 'ribs-wysiwyg-caret-location';
+    this.wysiwygDiv.append(caretLocationDiv);
+
+    this.addEventsListenersEditableDiv();
+  }
+
+  /**
+   * method to add event listener on editable div
+   */
+  addEventsListenersEditableDiv() {
     this.editableDiv.addEventListener('keydown', (event) => {
-      if(event.keyCode == 13 && !event.shiftKey) {
+      if(event.keyCode === 13 && !event.shiftKey) {
         document.execCommand('defaultParagraphSeparator', false, 'p');
-        this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
-        return false;
       }
-      this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
+
+      RibsWysiwygUtils.refreshCaretLocationDiv();
     });
 
     this.editableDiv.addEventListener('click', () => {
@@ -74,13 +85,8 @@ class RibsWysiwyg {
         document.execCommand('formatBlock', false, 'p');
       }
 
-      this.caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
+      RibsWysiwygUtils.refreshCaretLocationDiv();
     });
-
-    const caretLocationDiv = document.createElement('div');
-    caretLocationDiv.id = 'ribs-wysiwyg-caret-location';
-    this.wysiwygDiv.append(caretLocationDiv);
-    this.caretLocationDiv = document.getElementById('ribs-wysiwyg-caret-location');
   }
 
   /**
