@@ -8,6 +8,7 @@ class FontSize {
   constructor(toolbarDiv, editableDiv, options) {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
+    this.options = options;
     this.addButtonToToolbar();
   }
 
@@ -17,10 +18,14 @@ class FontSize {
   addButtonToToolbar() {
     const fontSizeMenu = document.createElement('select');
     fontSizeMenu.id = 'ribs-wysiwyg-toolbar-fontsize';
-    fontSizeMenu.textContent = 'caca';
     fontSizeMenu.addEventListener('click', (event) => {
     });
     this.toolbarDiv.append(fontSizeMenu);
+    for (const fontSize of this.options.fontSize) {
+      const option = document.createElement('option');
+      option.text = `${fontSize}px`;
+      fontSizeMenu.add(option);
+    }
   }
 }
 
