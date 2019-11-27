@@ -1,13 +1,5 @@
 class RibsWysiwygUtils {
   /**
-   * method to get current selected text
-   * @returns {string}
-   */
-  static getSelectionText() {
-    return window.getSelection().toString();
-  }
-
-  /**
    * method to get current target position as array
    * @returns {array}
    */
