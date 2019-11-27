@@ -10,13 +10,13 @@ class Italic {
   constructor(toolbarDiv, editableDiv, options) {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
-    this.addItalicButtonToToolbar();
+    this.addButtonToToolbar();
   }
 
   /**
    * method to add italic button to toolbar
    */
-  addItalicButtonToToolbar() {
+  addButtonToToolbar() {
     const italicMenu = document.createElement('button');
     italicMenu.id = 'ribs-wysiwyg-toolbar-italic';
     italicMenu.textContent = 'I';

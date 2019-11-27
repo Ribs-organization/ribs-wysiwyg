@@ -10,13 +10,13 @@ class Bold {
   constructor(toolbarDiv, editableDiv, options) {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
-    this.addBoldButtonToToolbar();
+    this.addButtonToToolbar();
   }
 
   /**
    * method to add bold button to toolbar
    */
-  addBoldButtonToToolbar() {
+  addButtonToToolbar() {
     const boldMenu = document.createElement('button');
     boldMenu.id = 'ribs-wysiwyg-toolbar-bold';
     boldMenu.textContent = 'B';
