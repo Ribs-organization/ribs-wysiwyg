@@ -10,6 +10,8 @@ class FontSize {
     this.editableDiv = editableDiv;
     this.options = options;
     this.addButtonToToolbar();
+    this.addEventListener('click');
+    this.addEventListener('keydown');
   }
 
   /**
@@ -28,11 +30,33 @@ class FontSize {
 
       if (parseInt(fontSize) === parseInt(bodyFontSize)) {
         option.selected = true;
+        option.dataset.default = true;
       }
 
       option.text = `${fontSize}px`;
+      option.value = `${fontSize}px`;
       fontSizeMenu.add(option);
+      this.fontSizeMenu = fontSizeMenu;
     }
+  }
+
+  /**
+   * add event to change value of font size selected
+   * @param triggerEvent
+   */
+  addEventListener(triggerEvent) {
+    this.editableDiv.addEventListener(triggerEvent, () => {
+      if (window.getSelection && window.getSelection().getRangeAt && window.getSelection().anchorNode) {
+        let element = window.getSelection().anchorNode;
+
+        if (element.parentNode !== undefined && element.parentNode.style && element.parentNode.style.fontSize) {
+          console.log(element.parentNode.style.fontSize);
+          this.fontSizeMenu.value = element.parentNode.style.fontSize;
+        } else {
+          this.fontSizeMenu.value = this.fontSizeMenu.querySelector('[data-default]').value;
+        }
+      }
+    });
   }
 
   /**
