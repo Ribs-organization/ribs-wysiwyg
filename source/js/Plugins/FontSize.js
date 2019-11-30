@@ -10,8 +10,8 @@ class FontSize {
     this.editableDiv = editableDiv;
     this.options = options;
     this.addButtonToToolbar();
-    this.addEventListener('click');
-    this.addEventListener('keydown');
+    this.addSelectEventListener('click');
+    this.addSelectEventListener('keydown');
   }
 
   /**
@@ -44,13 +44,12 @@ class FontSize {
    * add event to change value of font size selected
    * @param triggerEvent
    */
-  addEventListener(triggerEvent) {
+  addSelectEventListener(triggerEvent) {
     this.editableDiv.addEventListener(triggerEvent, () => {
       if (window.getSelection && window.getSelection().getRangeAt && window.getSelection().anchorNode) {
         let element = window.getSelection().anchorNode;
 
-        if (element.parentNode !== undefined && element.parentNode.style && element.parentNode.style.fontSize) {
-          console.log(element.parentNode.style.fontSize);
+        if (element && element.parentNode !== undefined && element.parentNode.style && element.parentNode.style.fontSize) {
           this.fontSizeMenu.value = element.parentNode.style.fontSize;
         } else {
           this.fontSizeMenu.value = this.fontSizeMenu.querySelector('[data-default]').value;
