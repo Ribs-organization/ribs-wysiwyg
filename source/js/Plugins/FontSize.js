@@ -49,7 +49,7 @@ class FontSize {
       if (window.getSelection && window.getSelection().getRangeAt && window.getSelection().anchorNode) {
         let element = window.getSelection().anchorNode;
 
-        if (element && element.parentNode !== undefined && element.parentNode.style && element.parentNode.style.fontSize) {
+        if (element && element && element.parentNode !== undefined && element.parentNode.style && element.parentNode.style.fontSize) {
           this.fontSizeMenu.value = element.parentNode.style.fontSize;
         } else {
           this.fontSizeMenu.value = this.fontSizeMenu.querySelector('[data-default]').value;
@@ -59,20 +59,37 @@ class FontSize {
   }
 
   /**
+   * method to replace create font element by a span
+   * @param fontElement
+   * @param fontSize
+   */
+  replaceFontBySpan(fontElement, fontSize) {
+    const parentDiv = fontElement.parentNode;
+    const span = document.createElement('span');
+    span.appendChild(document.createTextNode(fontElement.textContent));
+    span.style.fontSize = fontSize;
+
+    parentDiv.replaceChild(span, fontElement);
+  }
+
+  /**
    * method to change font size of current selection
    * @param event
    */
   changeFontSize(event) {
-    document.execCommand("fontSize", false, '7');
-
+    this.editableDiv.focus();
+    document.execCommand("fontSize", false, '1');
+    const fontSize = event.currentTarget.value;
     const fontElement = document.getElementsByTagName('font')[0];
-    const parentDiv = fontElement.parentNode;
 
-    const span = document.createElement('span');
-    span.appendChild(document.createTextNode(fontElement.textContent));
-    span.style.fontSize = event.currentTarget.value;
-
-    parentDiv.replaceChild(span, fontElement);
+    if (!fontElement) {
+      this.editableDiv.addEventListener('keydown', () => {
+        const fontElement = document.getElementsByTagName('font')[0];
+        this.replaceFontBySpan(fontElement, fontSize);
+      });
+    } else {
+      this.replaceFontBySpan(fontElement, fontSize);
+    }
   }
 }
 
