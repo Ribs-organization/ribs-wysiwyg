@@ -33,9 +33,12 @@ class RibsWysiwyg {
     if (!options.fontSize) {
       options.fontSize = [8, 10, 12, 14, 16, 18, 24, 36];
     }
+    if (!options.blocks) {
+      options.blocks = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+    }
 
     if (!options.toolbar) {
-      options.toolbar = ['Bold', 'Italic', 'Underline', 'Strikethrough', 'FontSize'];
+      options.toolbar = ['Bold', 'Italic', 'Underline', 'Strikethrough', 'FontSize', 'Blocks'];
     } else {
       options.toolbar = options.toolbar.split(' ');
     }
