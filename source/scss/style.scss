@@ -8,12 +8,26 @@
 	border: 1px solid #cccccc;
 	border-bottom: none;
 	
+	div {
+		display: inline-block;
+		height: 30px;
+		line-height: 30px;
+		vertical-align: middle;
+	}
+	
+	.ribs-wysiwyg-toolbar-separator {
+		height: 30px;
+		width: 1px;
+		background: #ccc;
+		vertical-align: bottom;
+		margin: 0 10px;
+	}
+	
 	button {
 		border: none;
 		box-shadow: none;
 		min-width: 30px;
-		height: 30px;
-		line-height: 30px;
+		height: 100%;
 		padding: 0 5px;
 		text-align: center;
 		cursor: pointer;
