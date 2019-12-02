@@ -70,6 +70,15 @@ class FontSize {
     span.style.fontSize = fontSize;
 
     parentDiv.replaceChild(span, fontElement);
+
+    const range = document.createRange();
+    const sel = window.getSelection();
+    range.selectNodeContents(this.editableDiv);
+    range.collapse(false);
+    sel.removeAllRanges();
+    sel.addRange(range);
+    this.editableDiv.focus();
+    range.detach();
   }
 
   /**
