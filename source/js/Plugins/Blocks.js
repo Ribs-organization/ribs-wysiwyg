@@ -25,10 +25,10 @@ class Blocks {
     blocksMenu.addEventListener('change', (event) => this.changeBlock(event));
     this.toolbarDiv.append(blocksMenu);
 
-    for (const blocks of this.options.blocks) {
+    for (const block in this.options.blocks) {
       const option = document.createElement('option');
-      option.text = `${blocks}`;
-      option.value = `${blocks}`;
+      option.text = `${this.options.blocks[block]}`;
+      option.value = `${block}`;
       blocksMenu.add(option);
       this.blocksMenu = blocksMenu;
     }
@@ -43,7 +43,7 @@ class Blocks {
       if (window.getSelection && window.getSelection().getRangeAt && window.getSelection().anchorNode) {
         let element = window.getSelection().anchorNode;
 
-        if (element && element && element.parentNode && this.options.blocks.indexOf(element.parentNode.tagName.toLowerCase()) >= 0) {
+        if (element && element && element.parentNode && this.options.blocks.hasOwnProperty(element.parentNode.tagName.toLowerCase()) >= 0) {
           this.blocksMenu.value = element.parentNode.tagName.toLowerCase();
         }
       }
