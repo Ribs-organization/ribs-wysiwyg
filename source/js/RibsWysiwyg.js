@@ -35,7 +35,7 @@ class RibsWysiwyg {
     }
 
     if (!options.toolbar) {
-      options.toolbar = ['Bold', 'Italic', 'Underline', 'FontSize'];
+      options.toolbar = ['Bold', 'Italic', 'Underline', 'Strikethrough', 'FontSize'];
     } else {
       options.toolbar = options.toolbar.split(' ');
     }
