@@ -8,9 +8,10 @@
 	button {
 		border: none;
 		box-shadow: none;
-		width: 30px;
+		min-width: 30px;
 		height: 30px;
 		line-height: 30px;
+		margin: 0 2px;
 		text-align: center;
 		cursor: pointer;
 		transition: background 0.3s ease;
@@ -18,5 +19,9 @@
 		&.active {
 			background: #cccccc;
 		}
+	}
+	
+	select {
+		margin: 0 2px;
 	}
 }
