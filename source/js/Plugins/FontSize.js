@@ -1,6 +1,6 @@
 class FontSize {
   /**
-   * method to initialize Bold plugin
+   * method to initialize FontSize plugin
    * @param toolbarDiv
    * @param editableDiv
    * @param options
@@ -103,7 +103,7 @@ class FontSize {
 }
 
 /**
- * function to load Bold class
+ * function to load FontSize class
  * @param toolbarDiv
  * @param editableDiv
  * @param options
