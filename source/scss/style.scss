@@ -1,22 +1,26 @@
 #ribs-wysiwyg-editable {
-	border: 1px solid #ccc;
+	border: 1px solid #cccccc;
 	width: 100%;
 	min-height: 200px;
 }
 
 #ribs-wysiwyg-toolbar {
+	border: 1px solid #cccccc;
+	border-bottom: none;
+	
 	button {
 		border: none;
 		box-shadow: none;
 		min-width: 30px;
 		height: 30px;
 		line-height: 30px;
-		margin: 0 2px;
+		padding: 0 5px;
 		text-align: center;
 		cursor: pointer;
 		transition: background 0.3s ease;
+		background: transparent;
 		
-		&.active {
+		&.active, &:hover {
 			background: #cccccc;
 		}
 	}
