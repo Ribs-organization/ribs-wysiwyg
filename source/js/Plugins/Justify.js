@@ -20,11 +20,13 @@ class Justify {
     const justifyTypes = ['Left', 'Center', 'Right', 'Full'];
 
     for (const justifyType of justifyTypes) {
+      const div = document.createElement('div');
       const justifyMenu = document.createElement('button');
       justifyMenu.id = `ribs-wysiwyg-toolbar-justify-${justifyType}`;
       justifyMenu.innerHTML = justifyType;
       justifyMenu.addEventListener('click', () => this.setTextToJustify(justifyType));
-      this.toolbarDiv.append(justifyMenu);
+      div.append(justifyMenu);
+      this.toolbarDiv.append(div);
     }
   }
 

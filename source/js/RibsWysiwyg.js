@@ -46,7 +46,7 @@ class RibsWysiwyg {
     }
 
     if (!options.toolbar) {
-      options.toolbar = ['Justify', 'Bold', 'Italic', 'Underline', 'Strikethrough', 'FontSize', 'Blocks'];
+      options.toolbar = ['Justify', '|', 'Bold', 'Italic', 'Underline', 'Strikethrough', '|', 'FontSize', 'Blocks'];
     } else {
       options.toolbar = options.toolbar.split(' ');
     }
@@ -113,7 +113,13 @@ class RibsWysiwyg {
     this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
 
     for (let plugin of this.options.toolbar) {
-      (require(`./Plugins/${plugin}.js`)).launchClass(this.toolbarDiv, this.editableDiv, this.options);
+      if (plugin === '|') {
+        const boldMenu = document.createElement('div');
+        boldMenu.classList.add('ribs-wysiwyg-toolbar-separator');
+        this.toolbarDiv.append(boldMenu);
+      } else {
+        (require(`./Plugins/${plugin}.js`)).launchClass(this.toolbarDiv, this.editableDiv, this.options);
+      }
     }
   }
 }

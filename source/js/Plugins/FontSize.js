@@ -18,10 +18,12 @@ class FontSize {
    * method to add bold button to toolbar
    */
   addButtonToToolbar() {
+    const div = document.createElement('div');
     const fontSizeMenu = document.createElement('select');
     fontSizeMenu.id = 'ribs-wysiwyg-toolbar-fontsize';
     fontSizeMenu.addEventListener('change', (event) => this.changeFontSize(event));
-    this.toolbarDiv.append(fontSizeMenu);
+    div.append(fontSizeMenu);
+    this.toolbarDiv.append(div);
 
     const bodyFontSize = window.getComputedStyle(document.querySelector('body'), null).getPropertyValue('font-size');
 

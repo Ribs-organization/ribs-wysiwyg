@@ -17,11 +17,13 @@ class Bold {
    * method to add bold button to toolbar
    */
   addButtonToToolbar() {
+    const div = document.createElement('div');
     const boldMenu = document.createElement('button');
     boldMenu.id = 'ribs-wysiwyg-toolbar-bold';
     boldMenu.innerHTML = '<span style="font-weight: bold">B</span>';
     boldMenu.addEventListener('click', () => this.setTextToBold());
-    this.toolbarDiv.append(boldMenu);
+    div.append(boldMenu);
+    this.toolbarDiv.append(div);
   }
 
   /**

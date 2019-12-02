@@ -17,11 +17,13 @@ class Underline {
    * method to add underline button to toolbar
    */
   addButtonToToolbar() {
+    const div = document.createElement('div');
     const underlineMenu = document.createElement('button');
     underlineMenu.id = 'ribs-wysiwyg-toolbar-underline';
     underlineMenu.innerHTML = '<span style="text-decoration: underline">U</span>';
     underlineMenu.addEventListener('click', () => this.setTextToUnderline());
-    this.toolbarDiv.append(underlineMenu);
+    div.append(underlineMenu);
+    this.toolbarDiv.append(div);
   }
 
   /**

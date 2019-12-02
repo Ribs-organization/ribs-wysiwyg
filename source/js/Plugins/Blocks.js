@@ -20,10 +20,12 @@ class Blocks {
    * method to add bold button to toolbar
    */
   addButtonToToolbar() {
+    const div = document.createElement('div');
     const blocksMenu = document.createElement('select');
     blocksMenu.id = 'ribs-wysiwyg-toolbar-blocks';
     blocksMenu.addEventListener('change', (event) => this.changeBlock(event));
-    this.toolbarDiv.append(blocksMenu);
+    div.append(blocksMenu);
+    this.toolbarDiv.append(div);
 
     for (const block in this.options.blocks) {
       const option = document.createElement('option');

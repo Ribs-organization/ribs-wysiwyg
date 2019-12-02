@@ -17,11 +17,13 @@ class Strikethrough {
    * method to add strikethrough button to toolbar
    */
   addButtonToToolbar() {
+    const div = document.createElement('div');
     const strikethroughMenu = document.createElement('button');
     strikethroughMenu.id = 'ribs-wysiwyg-toolbar-strikethrough';
     strikethroughMenu.innerHTML = '<span style="text-decoration: line-through">S</span>';
     strikethroughMenu.addEventListener('click', () => this.setTextToStrikethrough());
-    this.toolbarDiv.append(strikethroughMenu);
+    div.append(strikethroughMenu);
+    this.toolbarDiv.append(div);
   }
 
   /**
