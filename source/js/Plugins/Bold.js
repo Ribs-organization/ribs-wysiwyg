@@ -19,7 +19,7 @@ class Bold {
   addButtonToToolbar() {
     const boldMenu = document.createElement('button');
     boldMenu.id = 'ribs-wysiwyg-toolbar-bold';
-    boldMenu.textContent = 'B';
+    boldMenu.innerHTML = '<span style="font-weight: bold">B</span>';
     boldMenu.addEventListener('click', () => this.setTextToBold());
     this.toolbarDiv.append(boldMenu);
   }
