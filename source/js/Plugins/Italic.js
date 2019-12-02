@@ -19,7 +19,7 @@ class Italic {
   addButtonToToolbar() {
     const italicMenu = document.createElement('button');
     italicMenu.id = 'ribs-wysiwyg-toolbar-italic';
-    italicMenu.textContent = 'I';
+    italicMenu.innerHTML = '<span style="font-style: italic">I</span>';
     italicMenu.addEventListener('click', () => this.setTextToItalic());
     this.toolbarDiv.append(italicMenu);
   }
