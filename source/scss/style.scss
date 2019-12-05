@@ -37,6 +37,15 @@
 		&.active, &:hover {
 			background: #cccccc;
 		}
+		
+		&.disabled {
+			color: rgba(34,47,62,.5);
+			cursor: not-allowed;
+			
+			&:hover {
+				background: inherit;
+			}
+		}
 	}
 	
 	select {
