@@ -11,6 +11,7 @@ class UndoRedo {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
     this.addButtonToToolbar();
+    this.addUndoEventListener();
   }
 
   /**
@@ -23,20 +24,70 @@ class UndoRedo {
       const div = document.createElement('div');
       const undoMenu = document.createElement('button');
       undoMenu.id = `ribs-wysiwyg-toolbar-undoRedo-${undoType}`;
+      undoMenu.classList.add('disabled');
       undoMenu.innerHTML = undoType;
-      undoMenu.addEventListener('click', () => this.undoRedo(undoType));
+      undoMenu.addEventListener('click', (event) => this.undoRedo(event, undoType));
       div.append(undoMenu);
       this.toolbarDiv.append(div);
+      sessionStorage.removeItem('undoCount');
+      sessionStorage.removeItem('redoCount');
     }
   }
 
   /**
-   * method to put text in undoRedo
+   * method to put text in undoRedo and disabled or enable button in toolbar
    */
-  undoRedo(undoType) {
+  undoRedo(event, undoType) {
+    if (event.target.classList.contains('disabled')) {
+      return
+    }
+
+    if (undoType === 'Undo') {
+      sessionStorage.setItem('undoCount', parseInt(sessionStorage.getItem('undoCount')) - 1);
+      sessionStorage.setItem('redoCount', parseInt((sessionStorage.getItem('redoCount') ? sessionStorage.getItem('redoCount') : 0)) + 1);
+      if (parseInt(sessionStorage.getItem('undoCount')) === 0) {
+        event.target.classList.add('disabled');
+      }
+      if (parseInt(sessionStorage.getItem('redoCount')) > 0) {
+        const redoMenu = document.getElementById('ribs-wysiwyg-toolbar-undoRedo-Redo');
+        redoMenu.classList.remove('disabled');
+      }
+    }
+
+    if (undoType === 'Redo') {
+      sessionStorage.setItem('redoCount', parseInt(sessionStorage.getItem('redoCount')) - 1);
+      sessionStorage.setItem('undoCount', parseInt((sessionStorage.getItem('undoCount') ? sessionStorage.getItem('undoCount') : 0)) + 1);
+      if (parseInt(sessionStorage.getItem('redoCount')) === 0) {
+        event.target.classList.add('disabled');
+      }
+      if (parseInt(sessionStorage.getItem('undoCount')) > 0) {
+        const redoMenu = document.getElementById('ribs-wysiwyg-toolbar-undoRedo-Undo');
+        redoMenu.classList.remove('disabled');
+      }
+    }
+
     document.execCommand(undoType);
     this.editableDiv.focus();
     RibsWysiwygUtils.refreshCaretLocationDiv();
+  }
+
+  /**
+   * method to add event listener on keydown to store value in sessionStorage of redo and undo count
+   */
+  addUndoEventListener() {
+    this.editableDiv.addEventListener('keydown', () => {
+      const undoValue = sessionStorage.getItem('undoCount');
+      sessionStorage.setItem('undoCount', parseInt(undoValue ? undoValue : 0) + 1);
+      
+      sessionStorage.setItem('redoCount', 0);
+      const redoMenu = document.getElementById('ribs-wysiwyg-toolbar-undoRedo-Redo');
+      redoMenu.classList.remove('disabled');
+
+      if (undoValue) {
+        const undoMenu = document.getElementById('ribs-wysiwyg-toolbar-undoRedo-Undo');
+        undoMenu.classList.remove('disabled');
+      }
+    });
   }
 }
 
