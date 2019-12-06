@@ -46,7 +46,7 @@ class RibsWysiwyg {
     }
 
     if (!options.toolbar) {
-      options.toolbar = ['UndoRedo', '|', 'Justify', '|', 'Bold', 'Italic', 'Underline', 'Strikethrough', '|', 'FontSize', 'Blocks'];
+      options.toolbar = ['UndoRedo', '|', 'Justify', '|', 'Bold', 'Italic', 'Underline', 'Strikethrough', '|', 'FontSize', 'Blocks', '|', 'Link'];
     } else {
       options.toolbar = options.toolbar.split(' ');
     }
