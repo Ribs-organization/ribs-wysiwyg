@@ -44,6 +44,7 @@
     },
     "dependencies": {
         "ribs-core": "^0.0.9-4",
+        "ribs-popup": "^1.1.3",
         "ribs-reset-css": "^1.0.2"
     }
 }
