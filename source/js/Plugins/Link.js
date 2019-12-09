@@ -36,12 +36,40 @@ class Link {
   }
 
   /**
+   * method to create div for inputs of popup
+   * @param id
+   * @param label
+   * @returns {HTMLDivElement}
+   */
+  createInputPopup(id, label) {
+    const inputDiv = document.createElement('div');
+    const labelElement = document.createElement('label');
+    labelElement.innerText = label;
+    labelElement.for = id;
+    const input = document.createElement('input');
+    input.id = id;
+    input.name = id;
+    inputDiv.appendChild(labelElement);
+    inputDiv.appendChild(input);
+
+    return inputDiv;
+  }
+
+  /**
    * method to create set content div
    * @returns {HTMLDivElement}
    */
   createContentDivPopup() {
     const setContentDiv = document.createElement('div');
     setContentDiv.id = 'set-content';
+
+    const urlDiv = this.createInputPopup('ribs-wysiwyg-link-url', 'URL');
+    const DisplayTextDiv = this.createInputPopup('ribs-wysiwyg-link-text', 'Text to display');
+    const TitleDiv = this.createInputPopup('ribs-wysiwyg-link-title', 'Title');
+
+    setContentDiv.appendChild(urlDiv);
+    setContentDiv.appendChild(DisplayTextDiv);
+    setContentDiv.appendChild(TitleDiv);
 
     return setContentDiv;
   }
