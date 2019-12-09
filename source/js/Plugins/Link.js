@@ -12,7 +12,9 @@ class Link {
   constructor(toolbarDiv, editableDiv, options) {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
+    this.ribsPopup = new RibsPopup();
     this.addButtonToToolbar();
+    this.createPopup();
 
     const head  = document.getElementsByTagName('head')[0];
     const style  = document.createElement('style');
@@ -33,8 +35,47 @@ class Link {
     this.toolbarDiv.append(div);
   }
 
-  showPopup() {
+  /**
+   * method to create popup element and append it to the dom
+   */
+  createPopup() {
+    const popupDiv = document.createElement('div');
+    popupDiv.id = 'ribs-wysiwyg-link-popup';
+    popupDiv.classList.add('ribs-popup');
 
+    const contentDiv = document.createElement('div');
+    contentDiv.classList.add('content');
+
+    const setContentDiv = document.createElement('div');
+    setContentDiv.id = 'set-content';
+    const linkDiv = document.createElement('div');
+    linkDiv.classList.add('link');
+    const cancelLink = document.createElement('a');
+    cancelLink.classList.add('cancel');
+    cancelLink.dataset.close = '';
+    cancelLink.innerText = 'Close';
+    linkDiv.appendChild(cancelLink);
+    const validateLink = document.createElement('a');
+    validateLink.classList.add('validate');
+    validateLink.innerText = 'Validate';
+    linkDiv.appendChild(validateLink);
+
+    const clearDiv = document.createElement('div');
+    clearDiv.classList.add('clear');
+
+    contentDiv.appendChild(setContentDiv);
+    contentDiv.appendChild(linkDiv);
+    contentDiv.appendChild(clearDiv);
+    popupDiv.appendChild(contentDiv);
+
+    document.getElementById('ribs-wysiwyg-container').appendChild(popupDiv);
+  }
+
+  /**
+   * method to show popup
+   */
+  showPopup() {
+    this.ribsPopup.openJsPopup('ribs-wysiwyg-link-popup');
   }
 
   /**
