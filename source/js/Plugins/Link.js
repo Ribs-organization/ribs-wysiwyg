@@ -88,6 +88,7 @@ class Link {
     linkDiv.appendChild(cancelLink);
     const validateLink = document.createElement('a');
     validateLink.classList.add('validate');
+    validateLink.dataset.linkValidate = '';
     validateLink.innerText = 'Validate';
     linkDiv.appendChild(validateLink);
 
@@ -117,6 +118,7 @@ class Link {
     popupDiv.appendChild(contentDiv);
 
     document.getElementById('ribs-wysiwyg-container').appendChild(popupDiv);
+    this.popup = document.getElementById('ribs-wysiwyg-link-popup');
   }
 
   /**
@@ -124,6 +126,15 @@ class Link {
    */
   showPopup() {
     this.ribsPopup.openJsPopup('ribs-wysiwyg-link-popup');
+
+    const dataValidate = this.popup.querySelectorAll('.ribs-popup [data-link-validate]');
+
+    if (dataValidate.length > 0) {
+      Array.from(dataValidate).forEach((element) => {
+        element.addEventListener('click', (event) => {
+        });
+      });
+    }
   }
 
   /**
