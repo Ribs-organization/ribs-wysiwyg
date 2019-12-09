@@ -1,4 +1,6 @@
 import RibsWysiwygUtils from "../RibsWysiwygUtils";
+import RibsPopup from "ribs-popup/source/js/ribs-popup";
+import RibsPopupCss from 'ribs-popup/dist/css/style.min.css';
 
 class Link {
   /**
@@ -11,6 +13,11 @@ class Link {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
     this.addButtonToToolbar();
+
+    const head  = document.getElementsByTagName('head')[0];
+    const style  = document.createElement('style');
+    style.innerText = RibsPopupCss.toString();
+    head.appendChild(style);
   }
 
   /**
