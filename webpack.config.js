@@ -19,6 +19,7 @@ module.exports = {
         include: [
           path.join(__dirname, 'source/'),
           path.join(__dirname, 'node_modules/ribs-core/'),
+          path.join(__dirname, 'node_modules/ribs-popup/')
         ],
         loader: 'babel-loader',
       },
