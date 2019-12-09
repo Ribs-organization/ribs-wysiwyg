@@ -9,6 +9,7 @@ class FontSize {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
     this.options = options;
+    this.defineOptions();
     this.addButtonToToolbar();
     this.addSelectEventListener('click');
     this.addSelectEventListener('keydown');
@@ -39,6 +40,15 @@ class FontSize {
       option.value = `${fontSize}px`;
       fontSizeMenu.add(option);
       this.fontSizeMenu = fontSizeMenu;
+    }
+  }
+
+  /**
+   * define options of the plugin
+   */
+  defineOptions() {
+    if (!this.options.fontSize) {
+      this.options.fontSize = [8, 10, 12, 14, 16, 18, 24, 36];
     }
   }
 

@@ -30,9 +30,6 @@ class RibsWysiwyg {
     if (!options.height) {
       options.height = '200px'
     }
-    if (!options.fontSize) {
-      options.fontSize = [8, 10, 12, 14, 16, 18, 24, 36];
-    }
 
     if (!options.toolbar) {
       options.toolbar = ['UndoRedo', '|', 'Justify', '|', 'Bold', 'Italic', 'Underline', 'Strikethrough', '|', 'FontSize', 'Blocks', '|', 'Link'];
