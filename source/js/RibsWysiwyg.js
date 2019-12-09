@@ -33,17 +33,6 @@ class RibsWysiwyg {
     if (!options.fontSize) {
       options.fontSize = [8, 10, 12, 14, 16, 18, 24, 36];
     }
-    if (!options.blocks) {
-      options.blocks = {
-        'p': 'Paragraph',
-        'h1': 'Heading 1',
-        'h2': 'Heading 2',
-        'h3': 'Heading 3',
-        'h4': 'Heading 4',
-        'h5': 'Heading 5',
-        'h6': 'Heading 6',
-      };
-    }
 
     if (!options.toolbar) {
       options.toolbar = ['UndoRedo', '|', 'Justify', '|', 'Bold', 'Italic', 'Underline', 'Strikethrough', '|', 'FontSize', 'Blocks', '|', 'Link'];
