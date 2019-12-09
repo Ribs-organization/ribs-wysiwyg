@@ -37,6 +37,9 @@ class Blocks {
     }
   }
 
+  /**
+   * define options of the plugin
+   */
   defineOptions() {
     if (!this.options.blocks) {
       this.options.blocks = {
