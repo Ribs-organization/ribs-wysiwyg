@@ -36,18 +36,21 @@ class Link {
   }
 
   /**
-   * method to create popup element and append it to the dom
+   * method to create set content div
+   * @returns {HTMLDivElement}
    */
-  createPopup() {
-    const popupDiv = document.createElement('div');
-    popupDiv.id = 'ribs-wysiwyg-link-popup';
-    popupDiv.classList.add('ribs-popup');
-
-    const contentDiv = document.createElement('div');
-    contentDiv.classList.add('content');
-
+  createContentDivPopup() {
     const setContentDiv = document.createElement('div');
     setContentDiv.id = 'set-content';
+
+    return setContentDiv;
+  }
+
+  /**
+   * method to create links div
+   * @returns {HTMLDivElement}
+   */
+  createLinksDivPopup() {
     const linkDiv = document.createElement('div');
     linkDiv.classList.add('link');
     const cancelLink = document.createElement('a');
@@ -59,6 +62,23 @@ class Link {
     validateLink.classList.add('validate');
     validateLink.innerText = 'Validate';
     linkDiv.appendChild(validateLink);
+
+    return linkDiv;
+  }
+
+  /**
+   * method to create popup element and append it to the dom
+   */
+  createPopup() {
+    const popupDiv = document.createElement('div');
+    popupDiv.id = 'ribs-wysiwyg-link-popup';
+    popupDiv.classList.add('ribs-popup');
+
+    const contentDiv = document.createElement('div');
+    contentDiv.classList.add('content');
+
+    const setContentDiv = this.createContentDivPopup();
+    const linkDiv = this.createLinksDivPopup();
 
     const clearDiv = document.createElement('div');
     clearDiv.classList.add('clear');
