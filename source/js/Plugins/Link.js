@@ -48,6 +48,11 @@ class Link {
     const input = document.createElement('input');
     input.id = id;
     input.name = id;
+
+    if (id === 'ribs-wysiwyg-link-text') {
+      input.value = RibsWysiwygUtils.getSelectionText();
+    }
+
     inputDiv.appendChild(labelElement);
     inputDiv.appendChild(input);
 
