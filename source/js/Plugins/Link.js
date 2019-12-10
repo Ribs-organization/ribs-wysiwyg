@@ -116,8 +116,9 @@ class Link {
     contentDiv.appendChild(linkDiv);
     contentDiv.appendChild(clearDiv);
     popupDiv.appendChild(contentDiv);
-
     document.getElementById('ribs-wysiwyg-container').appendChild(popupDiv);
+    this.addEventsOnInputs();
+
     this.popup = document.getElementById('ribs-wysiwyg-link-popup');
   }
 
@@ -135,6 +136,31 @@ class Link {
         });
       });
     }
+  }
+
+  /**
+   * add eventson input for url and text. If enter text in url
+   * it is duplicated in text input if empty
+   */
+  addEventsOnInputs() {
+    const inputUrl = document.getElementById('ribs-wysiwyg-link-url');
+    const inputText = document.getElementById('ribs-wysiwyg-link-text');
+    let nullText = false;
+
+    inputUrl.addEventListener('keyup', (event) => {
+      if (inputText.value === '') {
+        nullText = true
+      }
+      if (nullText) {
+        inputText.value = inputUrl.value;
+      }
+    });
+
+    inputText.addEventListener('keyup', (event) => {
+      if (inputText.value !== inputUrl.value) {
+        nullText = false;
+      }
+    });
   }
 
   /**
