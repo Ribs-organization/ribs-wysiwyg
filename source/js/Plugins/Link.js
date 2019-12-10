@@ -14,7 +14,6 @@ class Link {
     this.editableDiv = editableDiv;
     this.ribsPopup = new RibsPopup();
     this.addButtonToToolbar();
-    this.createPopup();
 
     const head  = document.getElementsByTagName('head')[0];
     const style  = document.createElement('style');
@@ -127,6 +126,7 @@ class Link {
    */
   showPopup() {
     this.selection = RibsWysiwygUtils.saveSelection();
+    this.createPopup();
     this.ribsPopup.openJsPopup('ribs-wysiwyg-link-popup');
 
     const dataValidate = this.popup.querySelectorAll('.ribs-popup [data-link-validate]');
@@ -178,6 +178,10 @@ class Link {
       document.execCommand('createLink', false, inputUrl.value);
       this.ribsPopup.closePopup(event);
     }
+
+    this.editableDiv.focus();
+    RibsWysiwygUtils.refreshCaretLocationDiv();
+    document.getElementById(this.popup.id).remove();
   }
 }
 
