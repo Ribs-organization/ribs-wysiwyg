@@ -172,21 +172,41 @@ class Link {
    * method to put text in link
    */
   addEventValidate() {
-    const inputUrl = document.getElementById('ribs-wysiwyg-link-url');
-    const inputText = document.getElementById('ribs-wysiwyg-link-text');
-    const inputTitle = document.getElementById('ribs-wysiwyg-link-title');
+    const url = document.getElementById('ribs-wysiwyg-link-url').value;
+    const text = document.getElementById('ribs-wysiwyg-link-text').value;
+    const title = document.getElementById('ribs-wysiwyg-link-title').value;
 
-    if (!inputUrl.value) {
+    if (!url) {
       this.ribsPopup.closePopup(event);
     } else {
       RibsWysiwygUtils.restoreSelection(this.selection);
-      document.execCommand('createLink', false, inputUrl.value);
+      document.execCommand('createLink', false, url);
       this.ribsPopup.closePopup(event);
     }
 
     this.editableDiv.focus();
     RibsWysiwygUtils.refreshCaretLocationDiv();
     document.getElementById(this.popup.id).remove();
+
+    this.changeValuesOfLink(text, title);
+  }
+
+  /**
+   * add method to define text, id and title of link
+   * @param text
+   * @param title
+   */
+  changeValuesOfLink(text, title) {
+    const id = 'ribs-wysiwyg-a-number-';
+    let number = this.editableDiv.querySelectorAll('a').length + 1;
+
+    this.editableDiv.querySelectorAll('a').forEach((element) => {
+      if (element.id === undefined || element.id === '') {
+        element.id = `${id}${number}`;
+        element.innerText = text;
+        element.title = title;
+      }
+    });
   }
 }
 
