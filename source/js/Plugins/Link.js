@@ -117,23 +117,23 @@ class Link {
     contentDiv.appendChild(clearDiv);
     popupDiv.appendChild(contentDiv);
     document.getElementById('ribs-wysiwyg-container').appendChild(popupDiv);
-    this.addEventsOnInputs();
 
     this.popup = document.getElementById('ribs-wysiwyg-link-popup');
+    this.addEventsOnInputs();
   }
 
   /**
    * method to show popup
    */
   showPopup() {
+    this.selection = RibsWysiwygUtils.saveSelection();
     this.ribsPopup.openJsPopup('ribs-wysiwyg-link-popup');
 
     const dataValidate = this.popup.querySelectorAll('.ribs-popup [data-link-validate]');
 
     if (dataValidate.length > 0) {
       Array.from(dataValidate).forEach((element) => {
-        element.addEventListener('click', (event) => {
-        });
+        element.addEventListener('click', (event) => this.addEventValidate());
       });
     }
   }
@@ -166,10 +166,18 @@ class Link {
   /**
    * method to put text in link
    */
-  setTextToLink() {
-    document.execCommand('createLink');
-    this.editableDiv.focus();
-    RibsWysiwygUtils.refreshCaretLocationDiv();
+  addEventValidate() {
+    const inputUrl = document.getElementById('ribs-wysiwyg-link-url');
+    const inputText = document.getElementById('ribs-wysiwyg-link-text');
+    const inputTitle = document.getElementById('ribs-wysiwyg-link-title');
+
+    if (!inputUrl.value) {
+      this.ribsPopup.closePopup(event);
+    } else {
+      RibsWysiwygUtils.restoreSelection(this.selection);
+      document.execCommand('createLink', false, inputUrl.value);
+      this.ribsPopup.closePopup(event);
+    }
   }
 }
 
