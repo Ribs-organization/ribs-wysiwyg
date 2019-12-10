@@ -79,6 +79,20 @@ class RibsWysiwygUtils {
       }
     }
   }
+
+  /**
+   * method to get current text selected in contenteditable div
+   * @returns {string}
+   */
+  static getSelectionText() {
+    let text = '';
+    if (window.getSelection) {
+      text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+      text = document.selection.createRange().text;
+    }
+    return text;
+  }
 }
 
 export default RibsWysiwygUtils;
