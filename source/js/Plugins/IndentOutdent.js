@@ -27,34 +27,36 @@ class IndentOutdent {
         indentMenu.classList.add('disabled');
       }
       indentMenu.innerHTML = indentType;
-      indentMenu.addEventListener('click', (event) => this.indentOutdent(event, indentType));
+      indentMenu.addEventListener('click', () => this.indentOutdent(indentType));
       div.append(indentMenu);
       this.toolbarDiv.append(div);
-      sessionStorage.removeItem('indentCount');
-      sessionStorage.removeItem('outdentCount');
     }
   }
 
   /**
    * method indent or outdent an element
    */
-  indentOutdent(event, indentType) {
-    if (indentType === 'Indent') {
-      sessionStorage.setItem('outdentCount', parseInt((sessionStorage.getItem('outdentCount') ? sessionStorage.getItem('outdentCount') : 0)) + 1);
-    } else {
-      if (sessionStorage.getItem('outdentCount') > 0) {
-        sessionStorage.setItem('outdentCount', parseInt((sessionStorage.getItem('outdentCount') ? sessionStorage.getItem('outdentCount') : 0)) - 1);
+  indentOutdent(indentType) {
+    const outdentMenu = document.getElementById('ribs-wysiwyg-toolbar-indentOutdent-Outdent');
+    const parentElement = window.getSelection().anchorNode.parentElement;
+
+    if (parentElement) {
+      let marginLeft = parentElement.style.marginLeft.split('px')[0];
+      marginLeft = parseInt(marginLeft) ? parseInt(marginLeft) : 0;
+
+      if (indentType === 'Indent') {
+        parentElement.style.marginLeft = `${marginLeft+40}px`;
+        outdentMenu.classList.remove('disabled')
+      } else if (indentType === 'Outdent' && marginLeft > 0) {
+        const newMarginLeft = marginLeft-40;
+        parentElement.style.marginLeft = `${newMarginLeft}px`;
+
+        if (newMarginLeft === 0) {
+          outdentMenu.classList.add('disabled')
+        }
       }
     }
 
-    const outdentMenu = document.getElementById('ribs-wysiwyg-toolbar-indentOutdent-Outdent');
-    if (parseInt(sessionStorage.getItem('outdentCount')) > 0) {
-      outdentMenu.classList.remove('disabled');
-    } else {
-      outdentMenu.classList.add('disabled')
-    }
-
-    document.execCommand(indentType);
     this.editableDiv.focus();
     RibsWysiwygUtils.refreshCaretLocationDiv();
   }
