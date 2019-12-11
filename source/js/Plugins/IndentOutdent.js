@@ -11,6 +11,8 @@ class IndentOutdent {
     this.toolbarDiv = toolbarDiv;
     this.editableDiv = editableDiv;
     this.addButtonToToolbar();
+    this.addIndentEventListener('click');
+    this.addIndentEventListener('keyup');
   }
 
   /**
@@ -34,11 +36,45 @@ class IndentOutdent {
   }
 
   /**
+   * add event to change value of font size selected
+   * @param triggerEvent
+   */
+  addIndentEventListener(triggerEvent) {
+    const outdentMenu = document.getElementById('ribs-wysiwyg-toolbar-indentOutdent-Outdent');
+    this.editableDiv.addEventListener(triggerEvent, () => {
+      if (window.getSelection && window.getSelection().getRangeAt && window.getSelection().anchorNode) {
+        let parentElement = window.getSelection().anchorNode.parentElement;
+
+        if (parentElement.id === this.editableDiv.id) {
+          parentElement = window.getSelection().anchorNode;
+        }
+
+        if (parentElement) {
+          let marginLeft = parentElement.style.marginLeft.split('px')[0];
+          marginLeft = parseInt(marginLeft) ? parseInt(marginLeft) : 0;
+
+          if (marginLeft === 0) {
+            outdentMenu.classList.add('disabled');
+          } else {
+            outdentMenu.classList.remove('disabled')
+          }
+        } else {
+          outdentMenu.classList.add('disabled');
+        }
+      }
+    });
+  }
+
+  /**
    * method indent or outdent an element
    */
   indentOutdent(indentType) {
     const outdentMenu = document.getElementById('ribs-wysiwyg-toolbar-indentOutdent-Outdent');
-    const parentElement = window.getSelection().anchorNode.parentElement;
+    let parentElement = window.getSelection().anchorNode.parentElement;
+
+    if (parentElement.id === this.editableDiv.id) {
+      parentElement = window.getSelection().anchorNode;
+    }
 
     if (parentElement) {
       let marginLeft = parentElement.style.marginLeft.split('px')[0];
