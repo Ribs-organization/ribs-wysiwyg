@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: {
     'js/index': './source/js/index.js'
   },
