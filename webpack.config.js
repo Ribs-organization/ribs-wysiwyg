@@ -8,7 +8,8 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 module.exports = {
   mode: 'production',
   entry: {
-    'js/index': './source/js/index.js'
+    'js/index': './source/js/index.js',
+    'js/inline': './source/js/inline.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
