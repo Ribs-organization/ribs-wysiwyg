@@ -15,11 +15,15 @@ class RibsWysiwyg {
       return;
     }
 
-    this.selector = document.querySelector(options.selector);
-
     this.defineOptions(options);
-    this.initWysiwygDivs();
-    this.initToolbar();
+
+    if (options.mode && options.mode === 'inline') {
+      this.initWysiwygInlineDivs();
+    } else {
+      this.selector = document.querySelector(options.selector);
+      this.initWysiwygDivs();
+      this.initToolbar();
+    }
   }
 
   /**
@@ -28,7 +32,11 @@ class RibsWysiwyg {
    */
   defineOptions(options) {
     if (!options.height) {
-      options.height = '200px'
+      options.height = '200px';
+    }
+
+    if (!options.mode) {
+      options.mode = 'standard';
     }
 
     if (!options.toolbar) {
@@ -66,6 +74,23 @@ class RibsWysiwyg {
   }
 
   /**
+   * method to initialise inline wysiwyg editor
+   */
+  initWysiwygInlineDivs() {
+    const selectors = document.querySelectorAll(this.options.selector);
+
+    selectors.forEach((element) => {
+      element.contentEditable = true;
+
+      element.addEventListener('click', () => {
+        this.editableDiv = element;
+        this.wysiwygDiv = element;
+        this.addEventsListenersEditableDiv();
+      });
+    });
+  }
+
+  /**
    * method to add event listener on editable div
    */
   addEventsListenersEditableDiv() {
@@ -74,7 +99,7 @@ class RibsWysiwyg {
         document.execCommand('defaultParagraphSeparator', false, 'p');
       }
 
-      RibsWysiwygUtils.refreshCaretLocationDiv();
+      this.options.mode === 'standard' ? RibsWysiwygUtils.refreshCaretLocationDiv() : null;
     });
 
     this.editableDiv.addEventListener('click', () => {
@@ -85,7 +110,7 @@ class RibsWysiwyg {
         document.execCommand('formatBlock', false, 'p');
       }
 
-      RibsWysiwygUtils.refreshCaretLocationDiv();
+      this.options.mode === 'standard' ? RibsWysiwygUtils.refreshCaretLocationDiv() : null;
     });
   }
 
