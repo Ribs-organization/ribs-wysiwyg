@@ -107,7 +107,13 @@ class RibsWysiwyg {
       this.options.mode === 'standard' ? RibsWysiwygUtils.refreshCaretLocationDiv() : this.initToolbar(wysiwygDiv, editableDiv);
     });
 
-    this.options.mode === 'standard' ? this.initToolbar(wysiwygDiv, editableDiv) : null;
+    if (this.options.mode === 'inline') {
+      editableDiv.addEventListener('focusout', () => {
+        wysiwygDiv.removeChild(document.getElementById('ribs-wysiwyg-toolbar'));
+      })
+    } else {
+      this.initToolbar(wysiwygDiv, editableDiv);
+    }
   }
 
   /**
