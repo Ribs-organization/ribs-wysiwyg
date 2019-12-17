@@ -104,7 +104,11 @@ class RibsWysiwyg {
         document.execCommand('formatBlock', false, 'p');
       }
 
-      this.options.mode === 'standard' ? RibsWysiwygUtils.refreshCaretLocationDiv() : this.initToolbar(wysiwygDiv, editableDiv);
+      if (this.options.mode === 'inline' && !document.getElementById('ribs-wysiwyg-toolbar')) {
+        this.initToolbar(wysiwygDiv, editableDiv)
+      } else {
+        RibsWysiwygUtils.refreshCaretLocationDiv()
+      }
     });
 
     if (this.options.mode === 'inline') {
