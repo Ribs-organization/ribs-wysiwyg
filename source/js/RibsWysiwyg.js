@@ -22,7 +22,6 @@ class RibsWysiwyg {
     } else {
       this.selector = document.querySelector(options.selector);
       this.initWysiwygDivs();
-      this.initToolbar();
     }
   }
 
@@ -57,20 +56,18 @@ class RibsWysiwyg {
     const wysiwygDiv = document.createElement('div');
     wysiwygDiv.id = 'ribs-wysiwyg-container';
     this.selector.parentNode.prepend(wysiwygDiv);
-    this.wysiwygDiv = document.getElementById('ribs-wysiwyg-container');
 
     const editableDiv = document.createElement('div');
     editableDiv.id = 'ribs-wysiwyg-editable';
-    this.wysiwygDiv.append(editableDiv);
-    this.editableDiv = document.getElementById('ribs-wysiwyg-editable');
-    this.editableDiv.style.height = Number.isInteger(this.options.height) ? `${this.options.height}px` : this.options.height;
-    this.editableDiv.contentEditable = true;
+    wysiwygDiv.append(editableDiv);
+    editableDiv.style.height = Number.isInteger(this.options.height) ? `${this.options.height}px` : this.options.height;
+    editableDiv.contentEditable = true;
 
     const caretLocationDiv = document.createElement('div');
     caretLocationDiv.id = 'ribs-wysiwyg-caret-location';
-    this.wysiwygDiv.append(caretLocationDiv);
+    wysiwygDiv.append(caretLocationDiv);
 
-    this.addEventsListenersEditableDiv();
+    this.addEventsListenersEditableDiv(wysiwygDiv, editableDiv);
   }
 
   /**
@@ -81,20 +78,17 @@ class RibsWysiwyg {
 
     selectors.forEach((element) => {
       element.contentEditable = true;
-
-      element.addEventListener('click', () => {
-        this.editableDiv = element;
-        this.wysiwygDiv = element;
-        this.addEventsListenersEditableDiv();
-      });
+      this.addEventsListenersEditableDiv(element, element);
     });
   }
 
   /**
    * method to add event listener on editable div
+   * @param wysiwygDiv
+   * @param editableDiv
    */
-  addEventsListenersEditableDiv() {
-    this.editableDiv.addEventListener('keydown', (event) => {
+  addEventsListenersEditableDiv(wysiwygDiv, editableDiv) {
+    editableDiv.addEventListener('keydown', (event) => {
       if(event.keyCode === 13 && !event.shiftKey) {
         document.execCommand('defaultParagraphSeparator', false, 'p');
       }
@@ -102,7 +96,7 @@ class RibsWysiwyg {
       this.options.mode === 'standard' ? RibsWysiwygUtils.refreshCaretLocationDiv() : null;
     });
 
-    this.editableDiv.addEventListener('click', () => {
+    editableDiv.addEventListener('click', () => {
       const caretPosition = RibsWysiwygUtils.getCaretPosition();
       const lastPosition = caretPosition[caretPosition.length - 1];
 
@@ -110,26 +104,27 @@ class RibsWysiwyg {
         document.execCommand('formatBlock', false, 'p');
       }
 
-      this.options.mode === 'standard' ? RibsWysiwygUtils.refreshCaretLocationDiv() : null;
+      this.options.mode === 'standard' ? RibsWysiwygUtils.refreshCaretLocationDiv() : this.initToolbar(wysiwygDiv, editableDiv);
     });
+
+    this.options.mode === 'standard' ? this.initToolbar(wysiwygDiv, editableDiv) : null;
   }
 
   /**
    * method to init toolbar
    */
-  initToolbar() {
+  initToolbar(wysiwygDiv, editableDiv) {
     const toolbarDiv = document.createElement('div');
     toolbarDiv.id = 'ribs-wysiwyg-toolbar';
-    this.wysiwygDiv.prepend(toolbarDiv);
-    this.toolbarDiv = document.getElementById('ribs-wysiwyg-toolbar');
+    wysiwygDiv.prepend(toolbarDiv);
 
     for (let plugin of this.options.toolbar) {
       if (plugin === '|') {
         const boldMenu = document.createElement('div');
         boldMenu.classList.add('ribs-wysiwyg-toolbar-separator');
-        this.toolbarDiv.append(boldMenu);
+        toolbarDiv.append(boldMenu);
       } else {
-        (require(`./Plugins/${plugin}.js`)).launchClass(this.toolbarDiv, this.editableDiv, this.options);
+        (require(`./Plugins/${plugin}.js`)).launchClass(toolbarDiv, editableDiv, this.options);
       }
     }
   }
