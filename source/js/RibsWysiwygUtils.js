@@ -39,7 +39,9 @@ class RibsWysiwygUtils {
    */
   static refreshCaretLocationDiv() {
     const caretLocationDiv = document.getElementById('ribs-wysiwyg-caret-location');
-    caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
+    if (caretLocationDiv) {
+      caretLocationDiv.innerHTML = RibsWysiwygUtils.getCaretPositionAsString();
+    }
   }
 
   /**
