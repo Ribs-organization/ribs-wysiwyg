@@ -29,10 +29,12 @@
 		min-width: 30px;
 		height: 100%;
 		padding: 0 5px;
+		line-height: 30px;
 		text-align: center;
 		cursor: pointer;
 		transition: background 0.3s ease;
 		background: transparent;
+		font-size: 13.3px;
 		
 		&.active, &:hover {
 			background: #cccccc;
