@@ -104,11 +104,19 @@ class RibsWysiwyg {
         document.execCommand('formatBlock', false, 'p');
       }
 
+      if (this.options.mode === 'inline') {
+        if (editableDiv.id !== 'ribs-wysiwyg-editableDiv-current' && document.getElementById('ribs-wysiwyg-toolbar')) {
+          document.getElementById('ribs-wysiwyg-toolbar').remove();
+        }
+      }
+
       if (this.options.mode === 'inline' && !document.getElementById('ribs-wysiwyg-toolbar')) {
+        const currentEditable = document.getElementById('ribs-wysiwyg-editableDiv-current');
+        currentEditable ? currentEditable.removeAttribute('id') : null;
         editableDiv.id = 'ribs-wysiwyg-editableDiv-current';
         this.initToolbar(wysiwygDiv, editableDiv, 'inline');
       } else {
-        RibsWysiwygUtils.refreshCaretLocationDiv()
+        RibsWysiwygUtils.refreshCaretLocationDiv();
       }
     });
 
