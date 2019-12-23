@@ -105,7 +105,7 @@ class RibsWysiwyg {
       }
 
       if (this.options.mode === 'inline' && !document.getElementById('ribs-wysiwyg-toolbar')) {
-        this.initToolbar(wysiwygDiv, editableDiv)
+        this.initToolbar(wysiwygDiv, editableDiv, 'inline')
       } else {
         RibsWysiwygUtils.refreshCaretLocationDiv()
       }
@@ -120,9 +120,10 @@ class RibsWysiwyg {
   /**
    * method to init toolbar
    */
-  initToolbar(wysiwygDiv, editableDiv) {
+  initToolbar(wysiwygDiv, editableDiv, mode = null) {
     const toolbarDiv = document.createElement('div');
     toolbarDiv.id = 'ribs-wysiwyg-toolbar';
+    mode !== null ? toolbarDiv.classList.add(mode) : null;
     wysiwygDiv.prepend(toolbarDiv);
 
     for (let plugin of this.options.toolbar) {
