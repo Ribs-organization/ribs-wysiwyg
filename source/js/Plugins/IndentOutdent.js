@@ -76,7 +76,7 @@ class IndentOutdent {
       parentElement = window.getSelection().anchorNode;
     }
 
-    if (parentElement && parentElement.style) {
+    if (parentElement) {
       let marginLeft = parentElement.style.marginLeft.split('px')[0];
       marginLeft = parseInt(marginLeft) ? parseInt(marginLeft) : 0;
 
