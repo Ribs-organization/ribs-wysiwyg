@@ -123,8 +123,13 @@ class RibsWysiwyg {
   initToolbar(wysiwygDiv, editableDiv, mode = null) {
     const toolbarDiv = document.createElement('div');
     toolbarDiv.id = 'ribs-wysiwyg-toolbar';
-    mode !== null ? toolbarDiv.classList.add(mode) : null;
-    wysiwygDiv.prepend(toolbarDiv);
+    if (mode === null) {
+      wysiwygDiv.prepend(toolbarDiv)
+    } else {
+      toolbarDiv.classList.add('inline');
+      const parentDiv = wysiwygDiv.parentElement;
+      parentDiv.insertBefore(toolbarDiv, wysiwygDiv);
+    }
 
     for (let plugin of this.options.toolbar) {
       if (plugin === '|') {
