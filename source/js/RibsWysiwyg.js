@@ -112,9 +112,6 @@ class RibsWysiwyg {
     });
 
     if (this.options.mode === 'inline') {
-      editableDiv.addEventListener('focusout', () => {
-        wysiwygDiv.removeChild(document.getElementById('ribs-wysiwyg-toolbar'));
-      })
     } else {
       this.initToolbar(wysiwygDiv, editableDiv);
     }
