@@ -68,6 +68,7 @@ class RibsWysiwyg {
     wysiwygDiv.append(caretLocationDiv);
 
     this.addEventsListenersEditableDiv(wysiwygDiv, editableDiv);
+    editableDiv.innerHTML = this.selector.value;
   }
 
   /**
