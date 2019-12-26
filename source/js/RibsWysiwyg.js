@@ -1,4 +1,3 @@
-import RibsCore from 'ribs-core';
 import RibsWysiwygUtils from './RibsWysiwygUtils'
 
 class RibsWysiwyg {
