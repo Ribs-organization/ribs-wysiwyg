@@ -1,8 +1,8 @@
 {
     "name": "ribs-wysiwyg",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "ribs-wysiwyg",
-    "main": "index.js",
+    "main": "source/js/RibsWysiwyg.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
