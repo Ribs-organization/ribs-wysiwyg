@@ -120,7 +120,8 @@ class Link {
     contentDiv.appendChild(linkDiv);
     contentDiv.appendChild(clearDiv);
     popupDiv.appendChild(contentDiv);
-    document.getElementById('ribs-wysiwyg-container').appendChild(popupDiv);
+    const container = document.getElementById('ribs-wysiwyg-container') ? document.getElementById('ribs-wysiwyg-container') : document.getElementById('ribs-wysiwyg-editableDiv-current').parentElement ;
+    container.appendChild(popupDiv);
 
     this.popup = document.getElementById('ribs-wysiwyg-link-popup');
     this.addEventsOnInputs();
