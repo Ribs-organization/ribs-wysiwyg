@@ -145,7 +145,7 @@ class Link {
   }
 
   /**
-   * add eventson input for url and text. If enter text in url
+   * add event on input for url and text. If enter text in url
    * it is duplicated in text input if empty
    */
   addEventsOnInputs() {
