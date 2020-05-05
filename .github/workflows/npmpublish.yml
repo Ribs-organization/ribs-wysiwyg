@@ -10,22 +10,19 @@ on:
     branches: [ master ]
 
 jobs:
-  check-version:
-    name: Check package version
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Check package version
-        uses: technote-space/package-version-check-action@v1
-        with:
-          COMMIT_MESSAGE: '[edit] package version'
-
   publish-npm:
-    needs: check-version
     runs-on: ubuntu-latest
     steps:
+      - name: Check if version has been updated
+        id: check
+        uses: EndBug/version-check@v1
+        with:
+          diff-search: true
+          file-name: package.json
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+        if: steps.check.outputs.changed == 'true'
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
@@ -33,15 +30,14 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
-  publish-gpr:
-    needs: check-version
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#  publish-gpr:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: actions/setup-node@v1
+#        with:
+#          node-version: 12
+#          registry-url: https://npm.pkg.github.com/
+#      - run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
