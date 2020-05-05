@@ -15,14 +15,16 @@ jobs:
     steps:
       - name: Check if version has been updated
         id: check
-        uses: EndBug/version-check@v1.3.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        uses: EndBug/version-check@v1
 
-      - name: Checkout
+      - name: Log when changed
         if: steps.check.outputs.changed == 'true'
-        uses: actions/checkout@v2
+        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
 
+#      - name: Checkout
+#        if: steps.check.outputs.changed == 'true'
+#        uses: actions/checkout@v2
+#
 #      - name: Publish
 #        if: steps.check.outputs.changed == 'true'
 #        uses: actions/setup-node@v1
