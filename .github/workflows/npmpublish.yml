@@ -30,13 +30,12 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
 
-      - name: Log when changed
+      - name: Log when unchanged
         if: steps.check.outputs.changed != 'true'
         run: 'echo "Version unchanged"'
 
       - name: Publish
         uses: actions/setup-node@v1
-        if: steps.check.outputs.changed == 'true'
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
