@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Check if version has been updated
         id: check
-        uses: EndBug/version-check@v1
+        uses: EndBug/version-check@v1.3.0
         with:
           diff-search: true
           file-name: package.json
