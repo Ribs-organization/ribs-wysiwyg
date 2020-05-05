@@ -13,6 +13,15 @@ jobs:
   publish-npm:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Npm install
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm install
+      
       - name: Check if version has been updated
         id: check
         uses: EndBug/version-check@v1
