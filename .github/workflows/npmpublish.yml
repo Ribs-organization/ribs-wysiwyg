@@ -36,13 +36,13 @@ jobs:
         if: steps.check.outputs.changed != 'true'
         run: 'echo "Version unchanged"'
 
-#      - name: Set up Node.js for NPM
-#        uses: actions/setup-node@v1
-#        with:
-#          registry-url: "https://registry.npmjs.org"
-#
-#      - name: Publish package to NPM
-#        if: steps.check.outputs.changed == 'true'
-#        run: npm publish
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+      - name: Set up Node.js for NPM
+        uses: actions/setup-node@v1
+        with:
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Publish package to NPM
+        if: steps.check.outputs.changed == 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
