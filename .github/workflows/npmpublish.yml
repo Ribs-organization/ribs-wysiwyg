@@ -17,8 +17,6 @@ jobs:
         id: check
         uses: EndBug/version-check@v1.3.0
         with:
-          diff-search: true
-          file-name: package.json
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout
