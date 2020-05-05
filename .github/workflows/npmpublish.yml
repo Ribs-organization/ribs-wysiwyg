@@ -23,8 +23,8 @@ jobs:
       - run: npm install
       
       - name: Check if version has been updated
-        id: check
         uses: EndBug/version-check@v1
+        id: check
 
       - name: Log when changed
         if: steps.check.outputs.changed == 'true'
@@ -34,12 +34,13 @@ jobs:
         if: steps.check.outputs.changed != 'true'
         run: 'echo "Version unchanged"'
 
-      - name: Publish
+      - name: Set up Node.js for NPM
         uses: actions/setup-node@v1
         with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
-      - run: npm publish
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Publish package to NPM
         if: steps.check.outputs.changed == 'true'
+        run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
