@@ -1,8 +1,5 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
@@ -43,16 +40,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new UglifyJsPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/style.min.css',
       chunkFilename:'css/style.min.css',
     }),
     new ProgressBarPlugin()
   ],
-  optimization: {
-    minimizer: [
-      new OptimizeCSSAssetsPlugin({})
-    ]
-  },
 };
