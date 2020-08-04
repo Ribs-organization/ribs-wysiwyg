@@ -91,4 +91,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const blocks = new Blocks(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

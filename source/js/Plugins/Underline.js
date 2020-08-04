@@ -46,4 +46,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const underline = new Underline(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

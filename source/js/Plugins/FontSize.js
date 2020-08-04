@@ -124,4 +124,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const fontSize = new FontSize(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

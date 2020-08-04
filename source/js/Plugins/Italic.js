@@ -46,4 +46,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const italic = new Italic(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

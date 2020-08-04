@@ -46,4 +46,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const bold = new Bold(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

@@ -101,4 +101,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const undoRedo = new UndoRedo(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

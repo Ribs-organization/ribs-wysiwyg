@@ -221,4 +221,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const link = new Link(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

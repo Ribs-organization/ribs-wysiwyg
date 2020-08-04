@@ -50,4 +50,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const lists = new Lists(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

@@ -108,4 +108,4 @@ function launchClass(toolbarDiv, editableDiv, options) {
   const indentOutdent = new IndentOutdent(toolbarDiv, editableDiv, options);
 }
 
-module.exports = {launchClass};
+export default {launchClass};

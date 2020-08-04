@@ -141,12 +141,13 @@ class RibsWysiwyg {
     }
 
     for (let plugin of this.options.toolbar) {
+      console.log(plugin);
       if (plugin === '|') {
         const boldMenu = document.createElement('div');
         boldMenu.classList.add('ribs-wysiwyg-toolbar-separator');
         toolbarDiv.append(boldMenu);
       } else {
-        (require(`./Plugins/${plugin}.js`)).launchClass(toolbarDiv, editableDiv, this.options);
+        (require(`./Plugins/${plugin}.js`)).default.launchClass(toolbarDiv, editableDiv, this.options);
       }
     }
   }
