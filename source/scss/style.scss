@@ -2,6 +2,10 @@
 	border: 1px solid #cccccc;
 	width: 100%;
 	min-height: 200px;
+	
+	&:focus {
+		outline: none;
+	}
 }
 
 #ribs-wysiwyg-toolbar {
