@@ -41,6 +41,13 @@ class FontSize {
       fontSizeMenu.add(option);
       this.fontSizeMenu = fontSizeMenu;
     }
+
+    const defaultValue = this.fontSizeMenu.querySelector('[data-default]');
+    if (!defaultValue) {
+      const option = this.fontSizeMenu.querySelector('option:first-of-type');
+      option.selected = true;
+      option.dataset.default = true;
+    }
   }
 
   /**
